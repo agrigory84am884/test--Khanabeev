@@ -5,6 +5,7 @@ namespace Operations\Notification\Sanders;
 use Operations\Notification\MessagesClient;
 use Operations\Notification\NotificationEvents;
 use Operations\Notification\ReturnEvent;
+use Operations\Notification\NotificationTypes;
 use SplSubject;
 use function Operations\Notification\getEmailsByPermit;
 use function Operations\Notification\getResellerEmailFrom;
@@ -30,7 +31,8 @@ class EmployeesEmailSender implements \SplObserver
         $messages = [];
 
         foreach ($emails as $emailTo) {
-            $messages[] = [ // MessageTypes::EMAIL
+            $messages[] = [
+                'type' => NotificationTypes::EMAIL,
                 'emailFrom' => $emailFrom,
                 'emailTo'   => $emailTo,
                 'subject'   => __('complaintEmployeeEmailSubject', $subject->getTemplateData(), $subject->getReseller()->id),

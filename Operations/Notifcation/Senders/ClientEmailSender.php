@@ -5,6 +5,7 @@ namespace Operations\Notification\Sanders;
 use Operations\Notification\MessagesClient;
 use Operations\Notification\NotificationEvents;
 use Operations\Notification\ReturnEvent;
+use Operations\Notification\NotificationTypes;
 use SplSubject;
 use function Operations\Notification\getResellerEmailFrom;
 use function Operations\Notification\__;
@@ -31,7 +32,8 @@ class ClientEmailSender implements \SplObserver
         }
 
         $res = MessagesClient::sendMessage([
-            [ // MessageTypes::EMAIL
+            [
+                'type' => NotificationTypes::EMAIL,
                 'emailFrom' => $emailFrom,
                 'emailTo' => $subject->getClient()->email,
                 'subject' => __('complaintClientEmailSubject', $subject->getTemplateData(), $subject->getReseller()->id),

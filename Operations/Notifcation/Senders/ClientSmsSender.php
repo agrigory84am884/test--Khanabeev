@@ -26,7 +26,7 @@ class ClientSmsSender implements \SplObserver
             return;
         }
 
-         NotificationManager::send(
+        NotificationManager::send(
             $subject->getReseller()->id,
             $subject->getClient()->id,
             NotificationEvents::CHANGE_RETURN_STATUS,
